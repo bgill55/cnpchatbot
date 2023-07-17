@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -64,12 +63,6 @@ class _ChatScreenState extends State<ChatScreen> {
         title: const Text('CNPbot'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh_outlined),
-            onPressed: () {
-              resetChat();
-            },
-          ),
-          IconButton(
             icon: const Icon(Icons.delete_outline_outlined),
             onPressed: () {
               deleteChat();
@@ -89,9 +82,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 final message = messages[reversedIndex];
                 return ChatBubble(
                   message: message,
-                  userAvatar: AssetImage('assets/images/user_avatar.png'),
+                  userAvatar: const AssetImage('assets/images/user_avatar.png'),
                   assistantAvatar:
-                      AssetImage('assets/images/assistant_avatar.png'),
+                      const AssetImage('assets/images/assistant_avatar.png'),
                 );
               },
             ),
@@ -197,13 +190,13 @@ class _ChatScreenState extends State<ChatScreen> {
     return [];
   }
 
-  void resetChat() async {
-    setState(() {
-      messages.clear();
-    });
-    textEditingController.clear();
-    await saveChatMessages(messages);
-  }
+  // void resetChat() async {
+  //   setState(() {
+  //     messages.clear();
+  //   });
+  //   textEditingController.clear();
+  //   await saveChatMessages(messages);
+  // }
 
   void deleteChat() async {
     setState(() {
@@ -285,7 +278,7 @@ class ChatBubble extends StatelessWidget {
                   children: [
                     Text(
                       '${message.sender}:',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -322,7 +315,8 @@ class ChatBubble extends StatelessWidget {
           Text(
             formattedTime,
             style: const TextStyle(fontSize: 12.0),
-            textAlign: isUser ? TextAlign.end : TextAlign.start,
+            textAlign: isUser ? TextAlign.start : TextAlign.end,
+
           ),
         ],
       ),
