@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,10 +38,10 @@ class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  ChatScreenState createState() => ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class ChatScreenState extends State<ChatScreen> {
   List<Message> messages = [];
   final TextEditingController textEditingController = TextEditingController();
   final String apiKey = 'YOUR_API_KEY'; // Replace with your API key
@@ -63,7 +65,7 @@ class _ChatScreenState extends State<ChatScreen> {
         title: const Text('CNPbot'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.delete_outline_outlined),
+            icon: Icon(MdiIcons.deathStarVariant),
             onPressed: () {
               deleteChat();
             },
@@ -71,6 +73,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ],
       ),
       body: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           Expanded(
             child: ListView.builder(
@@ -80,29 +83,65 @@ class _ChatScreenState extends State<ChatScreen> {
               itemBuilder: (BuildContext context, int index) {
                 final reversedIndex = messages.length - 1 - index;
                 final message = messages[reversedIndex];
+                const userAvatar = AssetImage('assets/user_avatar.png');
+                const assistantAvatar =
+                AssetImage('assets/assistant_avatar.png');
+                if (kDebugMode) {
+                  print('userAvatar: $userAvatar');
+                }
+                if (kDebugMode) {
+                  print('assistantAvatar: $assistantAvatar');
+                }
+
+
                 return ChatBubble(
                   message: message,
                   userAvatar: const AssetImage('assets/images/user_avatar.png'),
                   assistantAvatar:
-                      const AssetImage('assets/images/assistant_avatar.png'),
+                  const AssetImage('assets/images/assistant_avatar.png'),
+
                 );
               },
             ),
           ),
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Expanded(
                   child: TextField(
-                    controller: textEditingController,
-                    decoration: const InputDecoration(
-                      hintText: 'Type a message...',
-                    ),
-                  ),
+                      cursorColor: Colors.red,
+                      controller: textEditingController,
+                      decoration: const InputDecoration(
+                        hintText: 'Type a message...',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          borderSide: BorderSide(
+                            color: Colors.grey,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          borderSide: BorderSide(
+                            color: Colors.grey,
+                            width: 2,
+                          ),
+                        ),
+                        filled: true,
+                        contentPadding: EdgeInsets.all(16),
+                        fillColor: Colors.transparent,
+                      ),
+                      maxLines: null,
+                      onSubmitted: (text) {
+                        sendMessage(text);
+                        textEditingController.clear();
+                      }),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.send_outlined),
+                  icon: Icon(MdiIcons.deathlyHallows),
                   onPressed: () {
                     sendMessage(textEditingController.text);
                   },
@@ -163,10 +202,14 @@ class _ChatScreenState extends State<ChatScreen> {
           // Save chat messages
           await saveChatMessages(messages);
         } else {
-          print('Error: ${response.statusCode} ${response.reasonPhrase}');
+          if (kDebugMode) {
+            print('Error: ${response.statusCode}${response.reasonPhrase}');
+          }
         }
       } catch (e) {
-        print('Error sending message: $e');
+        if (kDebugMode) {
+          print('Error sending message: $e');
+        }
       }
     }
   }
@@ -174,7 +217,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Future<void> saveChatMessages(List<Message> messages) async {
     final prefs = await SharedPreferences.getInstance();
     final encodedMessages =
-        messages.map((message) => message.toJson()).toList();
+    messages.map((message) => message.toJson()).toList();
     await prefs.setString('chat_messages', jsonEncode(encodedMessages));
   }
 
@@ -184,7 +227,7 @@ class _ChatScreenState extends State<ChatScreen> {
     if (encodedMessages != null) {
       final decodedMessages = jsonDecode(encodedMessages) as List<dynamic>;
       final messages =
-          decodedMessages.map((data) => Message.fromJson(data)).toList();
+      decodedMessages.map((data) => Message.fromJson(data)).toList();
       return messages;
     }
     return [];
@@ -258,7 +301,7 @@ class ChatBubble extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child: Column(
         crossAxisAlignment:
-            isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -290,7 +333,7 @@ class ChatBubble extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
+                      child: SelectableText(
                         message.text,
                         style: TextStyle(
                           fontSize: 16.0,
@@ -315,8 +358,7 @@ class ChatBubble extends StatelessWidget {
           Text(
             formattedTime,
             style: const TextStyle(fontSize: 12.0),
-            textAlign: isUser ? TextAlign.start : TextAlign.end,
-
+            textAlign: isUser ? TextAlign.end : TextAlign.start,
           ),
         ],
       ),
