@@ -1,0 +1,15 @@
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/cnpchatbot
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/icudtl.dat
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/lib/libflutter_linux_gtk.so
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/assets/images/assistant_avatar.png
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/assets/images/user_avatar.png
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/packages/material_design_icons_flutter/lib/fonts/materialdesignicons-webfont.ttf
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/shaders/ink_sparkle.frag
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/AssetManifest.json
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/AssetManifest.bin
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/FontManifest.json
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/NOTICES
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/NOTICES.Z
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/data/flutter_assets/version.json
+/home/bgill55_art/cnpchatbot/build/linux/x64/release/bundle/lib/libapp.so
