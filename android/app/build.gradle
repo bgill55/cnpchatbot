@@ -53,12 +53,18 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
+     signingConfigs {
+        release {
+            storeFile file("/home/bgill55_art/cnpchatbot/cutnpaste.jks")
+            storePassword "cambo55"
+            keyAlias "bgill55"
+            keyPassword "cambo55"
+        }
+    }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }
