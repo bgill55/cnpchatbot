@@ -12,7 +12,7 @@ struct _MyApplication {
   char** dart_entrypoint_arguments;
 };
 
-G_DEFINE_TYPE(MyApplication, my_application, GTK_TYPE_APPLICATION)
+G_DEFINE_TYPE(MyApplication, my_application, GTK_TYPE_APPLICATION);
 
 // Implements GApplication::activate.
 static void my_application_activate(GApplication* application) {
@@ -50,7 +50,7 @@ static void my_application_activate(GApplication* application) {
   gtk_window_set_default_size(window, 1280, 720);
   gtk_widget_show(GTK_WIDGET(window));
 
-  g_autoptr(FlDartProject) project = fl_dart_project_new();
+  g_autoptr(FlDartProject); project = fl_dart_project_new();
   fl_dart_project_set_dart_entrypoint_arguments(project, self->dart_entrypoint_arguments);
 
   FlView* view = fl_view_new(project);

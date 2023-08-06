@@ -6,13 +6,33 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
+
+import 'splash_screen.dart';
+
+
+Future<void> main() async {
+
+
+  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+}
+class MainScreen extends StatelessWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Main Screen'),
+      ),
+      body: const Center(
+        child: Text('Welcome to the Main Screen!'),
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,8 +48,18 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.red[900],
         hintColor: Colors.redAccent[700],
       ),
-      themeMode: ThemeMode.system, // Use system theme mode (light/dark)
-      home: const ChatScreen(),
+      themeMode: ThemeMode.system,
+      onGenerateRoute: (settings) {
+        if (settings.name == '/main') {
+          return MaterialPageRoute(builder: (context) => const MainScreen());
+        }
+        return null;
+      },
+      onGenerateInitialRoutes: (String initialRoute) {
+        return [
+          MaterialPageRoute(builder: (context) => const SplashScreen()),
+        ];
+      },
     );
   }
 }

@@ -25,6 +25,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+
 android {
     namespace "com.example.cnpchatbot"
     compileSdkVersion flutter.compileSdkVersion
@@ -52,6 +53,9 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        minSdkVersion 19
+        manifestPlaceholders = [
+                appAuthRedirectScheme: "com.googleusercontent.apps.c236694497660-q1l75fmm0tsikiojhgjifv8guokuujc1"]
     }
      signingConfigs {
         release {
@@ -75,4 +79,9 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation platform('com.google.firebase:firebase-bom:32.2.2')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-auth'
+
+
 }

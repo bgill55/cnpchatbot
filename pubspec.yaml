@@ -35,7 +35,10 @@ dependencies:
   flutter_svg: ^2.0.7
   shared_preferences: ^2.2.0
   material_design_icons_flutter: ^7.0.7296
-    # Add this line for OpenAI integration
+  supabase_flutter: ^1.10.11
+  flutter_appauth: ^6.0.1
+
+  # Add this line for OpenAI integration
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -59,6 +62,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/assistant_avatar.png
+    - assets/images/logo.png
     - assets/images/user_avatar.png
   # To add assets to your application, add an assets section, like this:
   # assets:
