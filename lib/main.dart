@@ -6,33 +6,13 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-
-import 'splash_screen.dart';
-
-
-Future<void> main() async {
-
-
-  runApp(MyApp());
-  WidgetsFlutterBinding.ensureInitialized();
-}
-class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Main Screen'),
-      ),
-      body: const Center(
-        child: Text('Welcome to the Main Screen!'),
-      ),
-    );
-  }
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,21 +29,41 @@ class MyApp extends StatelessWidget {
         hintColor: Colors.redAccent[700],
       ),
       themeMode: ThemeMode.system,
-      onGenerateRoute: (settings) {
-        if (settings.name == '/main') {
-          return MaterialPageRoute(builder: (context) => const MainScreen());
-        }
-        return null;
-      },
-      onGenerateInitialRoutes: (String initialRoute) {
-        return [
-          MaterialPageRoute(builder: (context) => const SplashScreen()),
-        ];
-      },
+      home: const MainScreen(),
     );
   }
 }
 
+class MainScreen extends StatelessWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Main Screen'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('CNP designs AI assistant, warning Deathstar deletes chat, cant be undone!'),
+            const SizedBox(height: 20),
+            ElevatedButton(child: const Text('Start Chat'),
+              onPressed: () {
+              Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ChatScreen()),
+               );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
 
