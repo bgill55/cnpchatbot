@@ -1,16 +1,14 @@
-# cnpchatbot
+# CNPchatbot
 
-A new Flutter project.
+An AI chat bot, that is free from censoring. it comes with a prompt library  to act as many different AI assistants. ie: Car mechanic, front end dev, UI/UX designer, life coach, full stack dev, text to image prompt writer, etc... 
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a free AI aisstant.  I plan to add an image generator and more prompts to the prompt library. 
 
-A few resources to get you started if this is your first Flutter project:
+This is a side project, so the speed of completion is time allotment dependent. 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Thus far Android, web (tested on chrome), and Linux apps are working. (until I break them ❤️)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Cut-n-Paste Designs
+@bgill55_art
