@@ -59,10 +59,10 @@ android {
     }
      signingConfigs {
         release {
-            storeFile file("/home/bgill55_art/cnpchatbot/cutnpaste.jks")
-            storePassword "cambo55"
+            storeFile file("android/app/Cnpbot.jks")
+            storePassword "Cambo55"
             keyAlias "bgill55"
-            keyPassword "cambo55"
+            keyPassword "Cambo55"
         }
     }
 
