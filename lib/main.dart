@@ -74,8 +74,8 @@ class ChatScreen extends StatefulWidget {
 class ChatScreenState extends State<ChatScreen> {
   List<Message> messages = [];
   final TextEditingController textEditingController = TextEditingController();
-  final String apiKey = 'pk-this-is-a-real-free-pool-token-for-everyone'; // Replace with your API key
-  final String apiUrl = 'https://ai.fakeopen.com/v1/chat/completions'; 
+  final String apiKey = 'pk-QOAYbELRKvLwvbAwBOsWnYtnlVlckmhBxMymkxerGMGouPNr'; // Replace with your API key
+  final String apiUrl = 'https://api.pawan.krd/v1/chat/completions'; 
   final ScrollController scrollController = ScrollController();
 
   @override
