@@ -5,9 +5,11 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:flutter/services.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp());)
 }
 
 class MyApp extends StatelessWidget {
@@ -49,13 +51,16 @@ class MainScreen extends StatelessWidget {
           children: [
             const Text('CNP designs AI assistant, warning Deathstar deletes chat, cant be undone!'),
             const SizedBox(height: 20),
-            ElevatedButton(child: const Text('Start Chat'),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+              ),
+              child: const Text('Start Chat'),
               onPressed: () {
-              Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ChatScreen()),
-               );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ChatScreen()),
+                );
               },
             ),
           ],
@@ -64,6 +69,7 @@ class MainScreen extends StatelessWidget {
     );
   }
 }
+
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
 
@@ -74,9 +80,9 @@ class ChatScreen extends StatefulWidget {
 class ChatScreenState extends State<ChatScreen> {
   List<Message> messages = [];
   final TextEditingController textEditingController = TextEditingController();
-  final String apiKey = 'pk-QOAYbELRKvLwvbAwBOsWnYtnlVlckmhBxMymkxerGMGouPNr'; // Replace with your API key
-  final String apiUrl = 'https://api.pawan.krd/v1/chat/completions'; 
   final ScrollController scrollController = ScrollController();
+  final String apiKey = 'pk-yDfQBaWYbtpPfJbGvIieEZIRlBdaxQmjzbKuosGhddWqZrlY'; // Replace with your actual API key
+  final String apiUrl = "https://api.pawan.krd/cosmosrp/v1"; // Replace with your actual API endpoint
 
   @override
   void initState() {
@@ -95,10 +101,8 @@ class ChatScreenState extends State<ChatScreen> {
         title: const Text('CNPbot'),
         actions: [
           IconButton(
-            icon: Icon(MdiIcons.deathStarVariant),
-            onPressed: () {
-              deleteChat();
-            },
+            icon: const Icon(Icons.delete),
+            onPressed: deleteChat,
           ),
         ],
       ),
@@ -107,34 +111,20 @@ class ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: ListView.builder(
-              reverse: true, // Reverse the order of messages
-              controller: scrollController, // Attach the ScrollController
+              reverse: true,
+              controller: scrollController,
               itemCount: messages.length,
               itemBuilder: (BuildContext context, int index) {
                 final reversedIndex = messages.length - 1 - index;
                 final message = messages[reversedIndex];
-                const userAvatar = AssetImage('assets/user_avatar.png');
-                const assistantAvatar =
-                AssetImage('assets/assistant_avatar.png');
-                if (kDebugMode) {
-                  print('userAvatar: $userAvatar');
-                }
-                if (kDebugMode) {
-                  print('assistantAvatar: $assistantAvatar');
-                }
-
-
                 return ChatBubble(
                   message: message,
                   userAvatar: const AssetImage('assets/images/user_avatar.png'),
-                  assistantAvatar:
-                  const AssetImage('assets/images/assistant_avatar.png'),
-
+                  assistantAvatar: const AssetImage('assets/images/assistant_avatar.png'),
                 );
               },
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -142,36 +132,36 @@ class ChatScreenState extends State<ChatScreen> {
               children: [
                 Expanded(
                   child: TextField(
-                      cursorColor: Colors.red,
-                      controller: textEditingController,
-                      decoration: const InputDecoration(
-                        hintText: 'Type a message...',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 2,
-                          ),
+                    cursorColor: Colors.red,
+                    controller: textEditingController,
+                    decoration: const InputDecoration(
+                      hintText: 'Type a message...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        borderSide: const BorderSide(
+                          color: Colors.grey,
+                          width: 2,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 2,
-                          ),
-                        ),
-                        filled: true,
-                        contentPadding: EdgeInsets.all(16),
-                        fillColor: Colors.transparent,
                       ),
-                      maxLines: null,
-                      onSubmitted: (text) {
-                        sendMessage(text);
-                        textEditingController.clear();
-                      }),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        borderSide: const BorderSide(
+                          color: Colors.grey,
+                          width: 2,
+                        ),
+                      ),
+                      filled: true,
+                      fillColor: Colors.transparent,
+                    ),
+                    maxLines: null,
+                    onSubmitted: (text) {
+                      sendMessage(text);
+                      textEditingController.clear();
+                    },
+                  ),
                 ),
                 IconButton(
-                  icon: Icon(MdiIcons.deathlyHallows),
+                  icon: const Icon(Icons.send),
                   onPressed: () {
                     sendMessage(textEditingController.text);
                   },
@@ -183,6 +173,9 @@ class ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
+
+}
+
 
   void sendMessage(String text) async {
     if (text.isNotEmpty) {
@@ -394,4 +387,42 @@ class ChatBubble extends StatelessWidget {
       ),
     );
   }
+}
+   ),
+        ],
+      ),
+    );
+  }
+}
+ser ? TextAlign.end : TextAlign.start,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (isUser) ...[
+                const SizedBox(width: 8.0),
+                CircleAvatar(
+                  backgroundImage: userAvatar,
+                  radius: 14.0,
+                ),
+              ],
+            ],
+          ),
+          const SizedBox(height: 8.0),
+          Text(
+            formattedTime,
+            style: const TextStyle(fontSize: 12.0),
+            textAlign: isUser ? TextAlign.end : TextAlign.start,
+          ),
+        ],
+      ),
+    );
+  }
+}
+}
+}
+
+}
+}
 }
