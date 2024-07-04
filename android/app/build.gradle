@@ -59,7 +59,7 @@ android {
     }
      signingConfigs {
         release {
-            storeFile file("android/app/Cnpbot.jks")
+            storeFile file("build/Cnpbot.jks")
             storePassword "Cambo55"
             keyAlias "bgill55"
             keyPassword "Cambo55"
