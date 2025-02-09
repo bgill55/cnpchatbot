@@ -6,10 +6,11 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/services.dart';
+import 'widgets/text_generation_widget.dart';
 
 
 void main() {
-  runApp(const MyApp());)
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -53,13 +54,35 @@ class MainScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.red,
+                backgroundColor: Colors.red,
               ),
               child: const Text('Start Chat'),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const ChatScreen()),
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+              ),
+              child: const Text('Text Generation'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Scaffold(
+                      appBar: AppBar(
+                        title: const Text('Text Generation'),
+                      ),
+                      body: const SingleChildScrollView(
+                        child: TextGenerationWidget(),
+                      ),
+                    ),
+                  ),
                 );
               },
             ),
@@ -387,42 +410,4 @@ class ChatBubble extends StatelessWidget {
       ),
     );
   }
-}
-   ),
-        ],
-      ),
-    );
-  }
-}
-ser ? TextAlign.end : TextAlign.start,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              if (isUser) ...[
-                const SizedBox(width: 8.0),
-                CircleAvatar(
-                  backgroundImage: userAvatar,
-                  radius: 14.0,
-                ),
-              ],
-            ],
-          ),
-          const SizedBox(height: 8.0),
-          Text(
-            formattedTime,
-            style: const TextStyle(fontSize: 12.0),
-            textAlign: isUser ? TextAlign.end : TextAlign.start,
-          ),
-        ],
-      ),
-    );
-  }
-}
-}
-}
-
-}
-}
 }
