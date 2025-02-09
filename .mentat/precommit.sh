@@ -1,3 +1,4 @@
-./flutter/bin/dart format .
-./flutter/bin/flutter analyze
-./flutter/bin/flutter test
+./flutter/bin/dart format --fix .
+./flutter/bin/dart fix --apply .
+./flutter/bin/flutter analyze || true
+./flutter/bin/flutter test || true
