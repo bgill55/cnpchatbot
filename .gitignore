@@ -42,3 +42,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+# Flutter SDK
+/flutter/
+
+# Build directories
+/build/
+
+# Downloaded installers
+flutter_linux_*.tar.xz
