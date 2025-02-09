@@ -1,8 +1,3 @@
-# Format code
-flutter format .
-
-# Run static analysis
+flutter format --set-exit-if-changed .
 flutter analyze
-
-# Run tests
 flutter test
