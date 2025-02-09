@@ -1,3 +1,3 @@
-flutter format .
-flutter analyze
-flutter test
+./flutter/bin/flutter format .
+./flutter/bin/flutter analyze
+./flutter/bin/flutter test
